@@ -1,4 +1,4 @@
-jack-capture-cuimhne (0.9.73-Cuimhne) unstable; urgency=medium
+jack-capture-cuimhne (VERSION_STRING) unstable; urgency=medium
 
   * Initial Release. Version with VU meter for PI with 4x20 LCD display
 

@@ -64,11 +64,31 @@ pipeline {
             steps {
                 dir ("jack-capture-cuimhne" ) {
                     sh '''
-                    export PATH=$PATH:/opt/tools/arm-bcm2708/${platform}/bin ; 
-                    export KERNEL=kernel ; 
-                    export KERNELDIR=../linux
-                    make ARCH=arm CROSS_COMPILE=${platform}- 
+                    make 
                     '''
+                }
+            }
+        }
+        stage( "Package jack-capture-cuimhne" ) {
+            steps {
+                dir ("jack-capture-cuimhne-pkg") {
+                    sh '''
+                    export VERSION_STRING=`grep "VERSION=" ../jack-capture-cuimhne/Makefile | cut -d= -f2`
+                    export BUILD_DIR=../jack-capture-${VERSION_STRING}
+                    mkdir ${BUILD_DIR}
+                    sed -i "s/VERSION_STRING/${VERSION_STRING}/g" DEBIAN/control
+                    sed -i "s/VERSION_STRING/${VERSION_STRING}/g" DEBIAN/changelog
+                    rsync -rp DEBIAN ${BUILD_DIR}
+                    mkdir -p ${BUILD_DIR}/lib/modules/${KERNEL_RELEASE}/extra/drivers/auxdisplay/
+                    cp ../hd44780-i2c/*.ko ${BUILD_DIR}/lib/modules/${KERNEL_RELEASE}/extra/drivers/auxdisplay/
+                    fakeroot dpkg-deb --build ${BUILD_DIR}
+                    '''
+                }
+	        }
+            post {
+                success {
+                    archiveArtifacts artifacts: 'hd44780-i2c-*.deb', followSymlinks: false, onlyIfSuccessful: true    
+                    build job: 'Package_Index', parameters: [string(name: 'project', value: 'hd44780-i2c-pkg'), string(name: 'files', value: '*.deb')]
                 }
             }
         }
