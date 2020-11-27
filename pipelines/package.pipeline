@@ -62,7 +62,7 @@ pipeline {
         }
         stage( "Build jack-capture-cuimhne" ) {
             steps {
-                dir ("jack_capture_cuimhne" ) {
+                dir ("jack-capture-cuimhne" ) {
                     sh '''
                     export PATH=$PATH:/opt/tools/arm-bcm2708/${platform}/bin ; 
                     export KERNEL=kernel ; 
