@@ -7,10 +7,32 @@ pipeline {
         stage('Clone Source') {
             steps {
                 deleteDir()
-                sh '''
-                    git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne.git ;
-                    git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne-pkg.git ;
-                '''
+                checkout(
+                [$class: 'GitSCM', 
+                branches: [[name: '*/main']], 
+                doGenerateSubmoduleConfigurations: false, 
+                extensions: [[$class: 'CloneOption', 
+                depth: 1, 
+                noTags: false, 
+                reference: '', 
+                shallow: true], 
+                [$class: 'RelativeTargetDirectory', relativeTargetDir: 'jack-capture-cuimhne']], 
+                submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'pizero-build', 
+                url: 'git@github.com:Claudenw/jack_capture_cuimhne.git']]])
+                
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CloneOption', depth: 1, noTags: false, reference: '', shallow: true]], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'pizero-build', url: 'git@github.com:Claudenw/jack_capture_cuimhne-pkg.git']]])
+                checkout(
+                [$class: 'GitSCM', 
+                branches: [[name: '*/main']], 
+                doGenerateSubmoduleConfigurations: false, 
+                extensions: [[$class: 'CloneOption', 
+                depth: 1, 
+                noTags: false, 
+                reference: '', 
+                shallow: true], 
+                [$class: 'RelativeTargetDirectory', relativeTargetDir: 'jack-capture-cuimhne-pkg']], 
+                submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'pizero-build', 
+                url: 'git@github.com:Claudenw/jack_capture_cuimhne-pkg.git']]])
             }
         }
         stage( "Build jack-capture-cuimhne" ) {
