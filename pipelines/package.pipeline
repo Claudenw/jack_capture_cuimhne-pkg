@@ -9,7 +9,7 @@ pipeline {
                 deleteDir()
                 sh '''
                     git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne.git ;
-             #       git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne-pkg.git ;
+                    git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne-pkg.git ;
                 '''
             }
         }
