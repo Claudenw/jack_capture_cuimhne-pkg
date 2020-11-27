@@ -1,0 +1,29 @@
+pipeline {
+     agent {
+                label 'localhost'
+            }
+
+    stages {
+        stage('Clone Source') {
+            steps {
+                deleteDir()
+                sh '''
+                    git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne.git ;
+             #       git clone --depth=1 https://github.com/Claudenw/jack_capture_cuimhne-pkg.git ;
+                '''
+            }
+        }
+        stage( "Build jack-capture-cuimhne" ) {
+            steps {
+                dir ("jack_capture_cuimhne" ) {
+                    sh '''
+                    export PATH=$PATH:/opt/tools/arm-bcm2708/${platform}/bin ; 
+                    export KERNEL=kernel ; 
+                    export KERNELDIR=../linux
+                    make ARCH=arm CROSS_COMPILE=${platform}- 
+                    '''
+                }
+            }
+        }
+    }
+}

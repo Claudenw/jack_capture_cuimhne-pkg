@@ -1,0 +1,8 @@
+/tmp/**
+.debhelper/
+autoreconf.after
+autoreconf.before
+cuimhne-sox.substvars
+cuimhne-sox/**
+debhelper-build-stamp
+files

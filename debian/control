@@ -1,0 +1,11 @@
+Package: jack-capture-cuimhne
+Section: sound
+Priority: optional
+Maintainer: Claude N. Warren, Jr. <claude@xenei.com>
+Build-Depends: jack
+
+Standards-Version: 4.1.3
+Architecture: arm
+Depends: ${shlibs:Depends}, ${misc:Depends}, sndfile-tools, libasound2, libsndfile1
+Replaces: jack-recprd
+Description: Cuimhne Ceoil version of jack_capture is a program for recording sound files with jack
