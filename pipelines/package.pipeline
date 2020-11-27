@@ -67,7 +67,7 @@ pipeline {
                     export VERSION_STRING=`grep "VERSION=" Makefile | head -1 |cut -d= -f2`
                     export DESTDIR=../jack-capture-${VERSION_STRING}
                     mkdir ${DESTDIR}
-                    make make install
+                    make install
                     '''
                 }
             }
