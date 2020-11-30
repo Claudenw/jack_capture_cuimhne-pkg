@@ -79,7 +79,7 @@ pipeline {
                     export VERSION_STRING=`grep "VERSION=" ../jack-capture-cuimhne/Makefile | head -1 |cut -d= -f2`
                     export BUILD_DIR=../jack-capture-${VERSION_STRING}
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
-                    rsync -rp DEBIAN ${BUILD_DIR}
+                    rsync -rp debian ${BUILD_DIR}
                     fakeroot dpkg-deb --build ${BUILD_DIR}
                     '''
                 }
