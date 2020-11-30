@@ -80,7 +80,6 @@ pipeline {
                     export BUILD_DIR=../jack-capture-${VERSION_STRING}
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
                     rsync -rp debian ${BUILD_DIR}
-                    fakeroot dpkg-deb --build ${BUILD_DIR}
                     '''
                 }
 	        }
