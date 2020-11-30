@@ -72,7 +72,7 @@ pipeline {
                 }
             }
         }
-        stage( "Package jack-capture-cuimhne" ) {
+        stage( "Prepare jack-capture-cuimhne packaging" ) {
             steps {
                 dir ("jack-capture-cuimhne-pkg") {
                     sh '''
@@ -82,6 +82,18 @@ pipeline {
                     rsync -rp debian ${BUILD_DIR}
                     fakeroot dpkg-deb --build ${BUILD_DIR}
                     '''
+                }
+	        }
+        }
+        stage( "Package jack-capture-cuimhne" ) {
+            steps {
+               	dir( "${env.BUILD_DIR}" ) {
+	                sh '''
+	                make update-debian
+	                dh clean
+	                dh build
+	                fakeroot dh binary
+	                '''
                 }
 	        }
             post {
