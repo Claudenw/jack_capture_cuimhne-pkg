@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for cuimhne-sox
+# postinst script for jack-capture
 #
 # see: dh_installdeb(1)
 

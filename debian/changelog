@@ -1,0 +1,5 @@
+jack-capture (0.9.73-Cuimhne-1) unstable; urgency=medium
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Claude N. Warren, Jr. <claude@xenei.com>  Mon, 30 Nov 2020 21:33:26 +0000

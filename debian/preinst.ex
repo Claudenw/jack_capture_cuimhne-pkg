@@ -1,5 +1,5 @@
 #!/bin/sh
-# preinst script for cuimhne-sox
+# preinst script for jack-capture
 #
 # see: dh_installdeb(1)
 

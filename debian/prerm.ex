@@ -1,5 +1,5 @@
 #!/bin/sh
-# prerm script for cuimhne-sox
+# prerm script for jack-capture
 #
 # see: dh_installdeb(1)
 

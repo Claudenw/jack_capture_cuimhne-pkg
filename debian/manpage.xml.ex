@@ -56,9 +56,9 @@ man(1), man(7), http://www.tldp.org/HOWTO/Man-Page/
   <!ENTITY dhsection   "SECTION">
   <!-- TITLE should be something like "User commands" or similar (see
        http://www.tldp.org/HOWTO/Man-Page/q2.html). -->
-  <!ENTITY dhtitle     "cuimhne-sox User Manual">
-  <!ENTITY dhucpackage "Cuimhne-sox">
-  <!ENTITY dhpackage   "cuimhne-sox">
+  <!ENTITY dhtitle     "jack-capture User Manual">
+  <!ENTITY dhucpackage "Jack-capture">
+  <!ENTITY dhpackage   "jack-capture">
 ]>
 
 <refentry>
