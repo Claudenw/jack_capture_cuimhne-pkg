@@ -84,7 +84,8 @@ pipeline {
                 dir ("jack-capture-cuimhne-pkg") {
                     sh '''
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
-                    rsync -rp debian ${BUILD_DIR}
+                    rsync -rp debian ../${BUILD_DIR}
+                    cp -p Makefile ../${BUILD_DIR}
                     '''
                 }
 	        }
