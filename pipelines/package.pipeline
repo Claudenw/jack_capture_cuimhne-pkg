@@ -1,3 +1,6 @@
+def VERSION_STRING = "undefined"
+def BUILD_DIR = "undefined"
+
 pipeline {
      agent {
                 label 'pizero'
@@ -58,16 +61,20 @@ pipeline {
             			]
         			]
     			])
+    			script {
+				    env.VERSION_STRING  = sh(script:'grep "VERSION" jack-capture-cuimhne/Makefile | cut -f2 -d=', returnStdout: true).trim()
+				    env.BUILD_DIR="jack-capture-${env.VERSION_STRING}"
+				    echo "Building ${env.VERSION_STRING } in ${env.BUILD_DIR }"
+				   
+				}
             }
         }
         stage( "Build jack-capture-cuimhne" ) {
             steps {
                 dir ("jack-capture-cuimhne" ) {
                     sh '''
-                    export VERSION_STRING=`grep "VERSION=" Makefile | head -1 |cut -d= -f2`
-                    export DESTDIR=../jack-capture-${VERSION_STRING}
-                    mkdir ${DESTDIR}
-                    make install
+                    mkdir ../${BUILD_DIR}
+                    make install DESTDIR=../${BUILD_DIR}/scripts
                     '''
                 }
             }
@@ -76,8 +83,6 @@ pipeline {
             steps {
                 dir ("jack-capture-cuimhne-pkg") {
                     sh '''
-                    export VERSION_STRING=`grep "VERSION=" ../jack-capture-cuimhne/Makefile | head -1 |cut -d= -f2`
-                    export BUILD_DIR=../jack-capture-${VERSION_STRING}
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
                     rsync -rp debian ${BUILD_DIR}
                     '''
