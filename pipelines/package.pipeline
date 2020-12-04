@@ -74,7 +74,7 @@ pipeline {
                 dir ("jack-capture-cuimhne" ) {
                     sh '''
                     mkdir ../${BUILD_DIR}
-                    make install DESTDIR=../${BUILD_DIR}/scripts
+                    make install DESTDIR=../${BUILD_DIR}/exec
                     '''
                 }
             }
