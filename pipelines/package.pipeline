@@ -24,7 +24,7 @@ pipeline {
 		                ], 
 	                	[
 	                		$class: 'RelativeTargetDirectory', 
-	                		relativeTargetDir: 'jack-capture-cuimhne'
+	                		relativeTargetDir: 'jack-capture'
                 		]
                 	], 
 	                submoduleCfg: [], 
@@ -50,7 +50,7 @@ pipeline {
 		                ], 
                 		[
                 			$class: 'RelativeTargetDirectory', 
-                			relativeTargetDir: 'jack-capture-cuimhne-pkg'
+                			relativeTargetDir: 'jack-capture-pkg'
             			]
         			], 
                 	submoduleCfg: [], 
@@ -71,7 +71,7 @@ pipeline {
         }
         stage( "Build jack-capture-cuimhne" ) {
             steps {
-                dir ("jack-capture-cuimhne" ) {
+                dir ("jack-capture" ) {
                     sh '''
                     mkdir ../${BUILD_DIR}
                     make install DESTDIR=../${BUILD_DIR}/exec PREFIX=/usr
@@ -81,7 +81,7 @@ pipeline {
         }
         stage( "Prepare jack-capture-cuimhne packaging" ) {
             steps {
-                dir ("jack-capture-cuimhne-pkg") {
+                dir ("jack-capture-pkg") {
                     sh '''
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
                     rsync -rp debian ../${BUILD_DIR}
