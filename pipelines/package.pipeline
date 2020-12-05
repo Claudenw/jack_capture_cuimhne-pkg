@@ -62,7 +62,7 @@ pipeline {
         			]
     			])
     			script {
-				    env.VERSION_STRING  = sh(script:'grep "^VERSION=" jack-capture-cuimhne/Makefile | cut -f2 -d=', returnStdout: true).trim()
+				    env.VERSION_STRING  = sh(script:'grep "^VERSION=" jack-capture/Makefile | cut -f2 -d=', returnStdout: true).trim()
 				    env.BUILD_DIR="jack-capture-i2c-${env.VERSION_STRING}"
 				    echo "Building ${env.VERSION_STRING } in ${env.BUILD_DIR }"
 				   
@@ -90,7 +90,7 @@ pipeline {
                 }
 	        }
         }
-        stage( "Package jack-capture-cuimhne" ) {
+        stage( "Package jack-capture-i2c" ) {
             steps {
                	dir( "${env.BUILD_DIR}" ) {
 	                sh '''
