@@ -63,7 +63,7 @@ pipeline {
     			])
     			script {
 				    env.VERSION_STRING  = sh(script:'grep "^VERSION=" jack-capture-cuimhne/Makefile | cut -f2 -d=', returnStdout: true).trim()
-				    env.BUILD_DIR="jack-capture-${env.VERSION_STRING}"
+				    env.BUILD_DIR="jack-capture-i2c-${env.VERSION_STRING}"
 				    echo "Building ${env.VERSION_STRING } in ${env.BUILD_DIR }"
 				   
 				}
