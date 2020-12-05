@@ -13,4 +13,4 @@ install:
 	
 	for fn in `find exec -type d | sed 's+exec++g'`; do install -m 755 -d $(DESTDIR)$$fn; done
 	for fn in `find exec -type f | sed 's+exec++g'`; do install -m 755 exec$$fn $(DESTDIR)$$fn; done
-	
+	mv $(DESTDIR)/usr/bin/jack-capture $(DESTDIR)/usr/bin/jack-capture-i2c
