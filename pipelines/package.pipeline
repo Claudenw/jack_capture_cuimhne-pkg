@@ -84,6 +84,7 @@ pipeline {
                 dir ("jack-capture-pkg") {
                     sh '''
                     sed -i "s/Version:.*/Version: ${VERSION_STRING}/g" debian/control
+                    sed -i "1 s/^/jack-capture-i2c (0.9.73-Cuimhne-${BUILD_NUMBER}) unstable; urgency=medium\\n\\n/" debian/changelog
                     rsync -rp debian ../${BUILD_DIR}
                     cp -p Makefile ../${BUILD_DIR}
                     '''
