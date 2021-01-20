@@ -10,7 +10,7 @@ Homepage: https://github.com/Claudenw/jack_capture_cuimhne
 #Vcs-Git: https://salsa.debian.org/debian/jack-capture.git
 
 Package: jack-capture-i2c
-Depends: ${shlibs:Depends}, ${misc:Depends}, libatomic1 (>=4.8), libc6 (>= 2.4), libjack-jack2-0 (>= 1.9.10+20150825) | libjack-0.125, liblo7 ( >= 0.26~repack), libmp3lame0, libsndfile1 (>=1.0.20), hd44780-i2c 
+Depends: ${shlibs:Depends}, ${misc:Depends}, jack2d, libatomic1 (>=4.8), libc6 (>= 2.4), libjack-jack2-0 (>= 1.9.10+20150825) | libjack-0.125, liblo7 ( >= 0.26~repack), libmp3lame0, libsndfile1 (>=1.0.20), hd44780-i2c 
 Architecture: armhf
 Replaces: jack-capture
 Description: Cuimhne Ceoil version of jack_capture is a program for recording sound files with jack
